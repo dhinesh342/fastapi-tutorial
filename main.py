@@ -37,7 +37,7 @@ def comments(id : int,limit:int=10):
 class Blog(BaseModel):
     title:str
     body:str
-    publised:Optional[bool]=False
+    publised:Optional[bool]
 
 @app.post("/blog")
 def create_blog(blog:Blog):
