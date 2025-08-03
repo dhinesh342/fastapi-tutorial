@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field,SecretStr
 from typing import List
 
 
@@ -11,7 +11,9 @@ class Blog(BaseModel):
 class User(BaseModel):
     name:str
     email:str
-    password:str
+    password:SecretStr
+    # password:str=Field(..., min_length=6, format="password")
+
 
 class ShowUser(BaseModel):
     name:str
@@ -27,7 +29,7 @@ class showBlog(BaseModel):
 
 class Login(BaseModel):
     username:str
-    password:str
+    password:str=Field(..., min_length=6, format="password")
 
 class Token(BaseModel):
     access_token: str
@@ -35,5 +37,5 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str | None = None
+    email: str | None = None
 
